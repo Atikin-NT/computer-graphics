@@ -10,11 +10,4 @@ class InvertFilter(Filter):
                        255-sourceClolor[2])
         return resultColor
 
-    def processImage(self, sourceImage: Image.Image):
-        resultImage = sourceImage.copy()
-        for i in range(resultImage.width):
-            for j in range(resultImage.height):
-                resultImage.putpixel((i, j), self.calculateNewPixelColor(sourceImage, i, j))
-        return resultImage
-
 

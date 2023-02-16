@@ -8,9 +8,12 @@ class Filter(metaclass=ABCMeta):
     def calculateNewPixelColor(self, sourceImage: Image, x: int, y: int):
         pass
 
-    @abstractmethod
     def processImage(self, sourceImage: Image):
-        pass
+        resultImage = sourceImage.copy()
+        for i in range(resultImage.width):
+            for j in range(resultImage.height):
+                resultImage.putpixel((i, j), self.calculateNewPixelColor(sourceImage, i, j))
+        return resultImage
 
     def Clam(self, value: int, max: int, min: int):
         if value < min:
