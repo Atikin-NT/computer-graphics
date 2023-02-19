@@ -2,6 +2,7 @@ from skimage import io
 import matplotlib.pyplot as plt
 import numpy as np
 from progress.bar import IncrementalBar
+import time
 
 def procImg(img, func):
     width = len(img)
@@ -69,11 +70,11 @@ def gistogram(img):
     plt.show()
 
 def light_avg(img):
-    s = 0
+    rgb = np.array([0,0,0])
     for x in range(len(img)):
         for y in range(len(img[0])):
-            s += intensity(img[x][y])
-    return s / (len(img) * len(img[0]))
+            rgb += img[x][y]
+    return intensity(rgb) / (len(img) * len(img[0]))
 
 def contrast(img, x, y, avg, c = 1.35):
     rgb = [0, 0, 0]
@@ -85,9 +86,15 @@ def contrast(img, x, y, avg, c = 1.35):
 if __name__ == "__main__":
     img = io.imread("data/pepe.jpg")
 
+    start = time.time()
     avg = light_avg(img)
+    end = time.time()
+    print(end - start)
 
+    start = time.time()
     img = procImg(img, lambda img, i, j: contrast(img, i, j, avg))
+    end = time.time()
+    print(end - start)
 
 
     plt.imshow(img)
