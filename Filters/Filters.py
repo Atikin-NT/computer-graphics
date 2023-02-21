@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from PIL import Image
+from progress.bar import IncrementalBar
 
 
 class Filter(metaclass=ABCMeta):
@@ -10,10 +11,13 @@ class Filter(metaclass=ABCMeta):
 
     def processImage(self, sourceImage: Image.Image):
         resultImage = sourceImage.copy()
-        avg = self.avg(resultImage)
+        # avg = self.avg(resultImage)
+        bar = IncrementalBar('Image processing', max = resultImage.width)
         for i in range(resultImage.width):
             for j in range(resultImage.height):
-                resultImage.putpixel((i, j), self.calculateNewPixelColor(sourceImage, i, j, avg))
+                resultImage.putpixel((i, j), self.calculateNewPixelColor(sourceImage, i, j))
+            bar.next()
+        bar.finish()
         return resultImage
 
     def avg(self, sourceImage: Image.Image):
@@ -28,7 +32,7 @@ class Filter(metaclass=ABCMeta):
                 resultB += neighborColor[2]
         return (1/3 * resultR + 1/3 * resultG + 1/3 * resultB) / (sourceImage.width * sourceImage.height)
 
-    def Clam(self, value: int, min: int, max: int) -> int:
+    def Clamp(self, value: int, min: int, max: int) -> int:
         if value < min:
             return min
         if value > max:
