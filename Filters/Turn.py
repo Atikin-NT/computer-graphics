@@ -1,5 +1,5 @@
 from Filters.Filters import Filter
-from PIL import Image
+import numpy as np
 import math
 
 
@@ -9,12 +9,13 @@ class Turn(Filter):
         self.y0 = y0
         self.angle_of_rotation = angle_of_rotation
 
-    def calculateNewPixelColor(self, sourceImage: Image.Image, x: int, y: int, avg=0):
-        newX = (x - self.x0) * math.cos(self.angle_of_rotation) - (y - self.y0) * math.sin(self.angle_of_rotation) + self.x0
-        newY = (x - self.x0) * math.sin(self.angle_of_rotation) + (y - self.y0) * math.cos(self.angle_of_rotation) + self.y0
+    def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int, avg=0):
+        newX = int((x - self.x0) * math.cos(self.angle_of_rotation) - (y - self.y0) * math.sin(self.angle_of_rotation) + self.x0)
+        newY = int((x - self.x0) * math.sin(self.angle_of_rotation) + (y - self.y0) * math.cos(self.angle_of_rotation) + self.y0)
 
-        if newX >= sourceImage.width or newY >= sourceImage.height:
-            return (0, 0, 0)
-        return sourceImage.getpixel((newX, newY))
+        width, height, _ = sourceImage.shape
+        if newX >= width or newY >= height or newY < 0 or newX < 0:
+            return 0, 0, 0
+        return sourceImage[newX][newY]
 
 
