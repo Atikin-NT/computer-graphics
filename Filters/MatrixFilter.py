@@ -6,7 +6,7 @@ class MatrixFilter(Filter):
     def __init__(self, kernel: list[list]):
         self.kernel = kernel
 
-    def calculateNewPixelColor(self, sourceImage: Image.Image, x: int, y: int):
+    def calculateNewPixelColor(self, sourceImage: Image.Image, x: int, y: int, avg):
         radiusX = int(len(self.kernel) / 2)
         radiusY = int(len(self.kernel[0]) / 2)
 
