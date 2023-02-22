@@ -13,8 +13,8 @@ class InvertFilter(Filter):
 class GrayScaleFilter(Filter):
     def calculateNewPixelColor(self, sourceImage: Image.Image, x: int, y: int):
         sourceClolor = sourceImage.getpixel((x, y))
-        intesity = 0.36 * sourceClolor[0] + 0.53 * sourceClolor[1] + 0.11 * sourceClolor[2]
-        resultColor = (self.Clamp(intesity, 0, 255), self.Clamp(intesity, 0, 255), self.Clamp(intesity, 0, 255))
+        intensity = 0.3 * sourceClolor[0] + 0.59 * sourceClolor[1] + 0.11 * sourceClolor[2]
+        resultColor = (self.Clamp(intensity, 0, 255), self.Clamp(intensity, 0, 255), self.Clamp(intensity, 0, 255))
         return resultColor    
 
 class Sepia(Filter):
@@ -24,11 +24,11 @@ class Sepia(Filter):
 
     def calculateNewPixelColor(self, sourceImage: Image.Image, x: int, y: int):
         sourceClolor = sourceImage.getpixel((x, y))
-        intesity = 0.36 * sourceClolor[0] + 0.53 * sourceClolor[1] + 0.11 * sourceClolor[2]
+        intensity = 0.36 * sourceClolor[0] + 0.53 * sourceClolor[1] + 0.11 * sourceClolor[2]
         
-        resultColor = (self.Clamp(intesity + 2 * self.k, 0, 255), 
-                       self.Clamp(intesity + 0.5 * self.k, 0, 255), 
-                       self.Clamp(intesity - 1 * self.k, 0, 255))
+        resultColor = (self.Clamp(intensity + 2 * self.k, 0, 255), 
+                       self.Clamp(intensity + 0.5 * self.k, 0, 255), 
+                       self.Clamp(intensity - 1 * self.k, 0, 255))
         return resultColor    
 
 

@@ -6,12 +6,11 @@ from progress.bar import IncrementalBar
 class Filter(metaclass=ABCMeta):
     """Класс филтров"""
     @abstractmethod
-    def calculateNewPixelColor(self, sourceImage: Image.Image, x: int, y: int, avg=0):
+    def calculateNewPixelColor(self, sourceImage: Image.Image, x: int, y: int):
         pass
 
     def processImage(self, sourceImage: Image.Image):
         resultImage = sourceImage.copy()
-        # avg = self.avg(resultImage)
         bar = IncrementalBar('Image processing', max = resultImage.width)
         for i in range(resultImage.width):
             for j in range(resultImage.height):
@@ -30,7 +29,20 @@ class Filter(metaclass=ABCMeta):
                 resultR += neighborColor[0]
                 resultG += neighborColor[1]
                 resultB += neighborColor[2]
-        return (1/3 * resultR + 1/3 * resultG + 1/3 * resultB) / (sourceImage.width * sourceImage.height)
+        n = sourceImage.width * sourceImage.height
+        return [resultR / n, resultG / n, resultB / n]
+    
+    def maximums(self, sourceImage: Image.Image):
+        maxR = 0
+        maxG = 0
+        maxB = 0
+        for i in range(sourceImage.width):
+            for j in range(sourceImage.height):
+                clr = sourceImage.getpixel((i, j))
+                if (clr[0] > maxR): maxR = clr[0]
+                if (clr[1] > maxG): maxG = clr[1]
+                if (clr[2] > maxB): maxB = clr[2]
+        return [maxR, maxG, maxB]
 
     def Clamp(self, value: int, min: int, max: int) -> int:
         if value < min:

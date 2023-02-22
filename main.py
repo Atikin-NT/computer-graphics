@@ -1,15 +1,16 @@
-from Filters.DotFilter import GrayScaleFilter, Sepia, LightCorrection
-from Filters.ContrastChage import ContrastFilter
-from Filters.BlurFilter import SharpFilter2
-from Filters.ContoursFilter import SobelFilter
-from Filters.WavesFilter import WavesFilter
+from Filters.DotFilter import *
+from Filters.BlurFilter import *
+from Filters.ContoursFilter import *
+from Filters.GeometryFilter import *
+from Filters.HypothesesFilter import *
 from PIL import Image
 
 
 def main():
-    img = Image.open("data/img1.jpg")
+    img = Image.open("data/Lenna600.png")
     # filter = InvertFilter()
-    filter = WavesFilter()
+    # filter = RefColorCor(img, [250, 150], [173, 204, 194])
+    filter = PerfectReflector(img)
     resultImage = filter.processImage(img)
     resultImage.show()
 

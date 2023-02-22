@@ -1,5 +1,6 @@
 from .Filters import Filter
 from PIL import Image
+from math import sqrt
 
 
 class DoubleMatrFilter(Filter):
@@ -28,8 +29,11 @@ class DoubleMatrFilter(Filter):
     def calculateNewPixelColor(self, sourceImage: Image.Image, x: int, y: int):
         Rx, Gx, Bx = self.calculateNewPixelColorK(sourceImage, x, y, self.kernelx)
         Ry, Gy, By = self.calculateNewPixelColorK(sourceImage, x, y, self.kernely)
-
-
-        return (self.Clamp((Rx * Rx + Ry * Ry) ** (1/2), 0, 255),
-                self.Clamp((Gx * Gx + Gy * Gy) ** (1/2), 0, 255),
-                self.Clamp((Bx * Bx + By * By) ** (1/2), 0, 255))
+        intensity1 = sqrt((Rx + Gx + Bx) * (Rx + Gx + Bx) + (Ry + Gy + By) * (Ry + Gy + By)) / 3
+        R = sqrt(Rx * Rx + Ry * Ry)
+        G = sqrt(Gx * Gx + Gy * Gy)
+        B = sqrt(Bx * Bx + By * By)
+        intensity2 = (R + G + B) / 3
+        return (self.Clamp(intensity1, 0, 255),
+                self.Clamp(intensity1, 0, 255),
+                self.Clamp(intensity1, 0, 255))

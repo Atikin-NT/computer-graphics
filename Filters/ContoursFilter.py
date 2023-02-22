@@ -1,5 +1,19 @@
 from .DoubleMatrFilter import DoubleMatrFilter
 
+class EdgeDetection2(DoubleMatrFilter):
+    def __init__(self):
+        kerx = [
+            [0, 0, 0],
+            [-1, 0, 1],
+            [0, 0, 0]
+        ]
+        kery = [
+            [0, 1, 0],
+            [0, 0, 0],
+            [0, -1, 0]
+        ]
+        super().__init__(kerx, kery)
+
 class SobelFilter(DoubleMatrFilter):
     def __init__(self):
         kerx = [
