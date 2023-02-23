@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 import numpy as np
+from tqdm import tqdm
 from progress.bar import IncrementalBar
 
 
@@ -13,12 +14,9 @@ class Filter(metaclass=ABCMeta):
         resultImage = np.copy(sourceImage)
 
         width, height, _ = resultImage.shape
-        bar = IncrementalBar('Image processing', max=width)
-        for i in range(width):
+        for i in tqdm(range(width)):
             for j in range(height):
                 resultImage[i][j] = self.calculateNewPixelColor(sourceImage, i, j)
-            bar.next()
-        bar.finish()
         return resultImage
 
     def avg(self, sourceImage: np.ndarray) -> list:
