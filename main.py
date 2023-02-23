@@ -3,6 +3,7 @@ from Filters.ContrastChage import ContrastFilter
 from Filters.BlurFilter import BlurrFilter
 from Filters.GaussianFilter import GaussianFilter
 from Filters.Transfer import Transfer
+from Filters.MedianFilter import MedianFilter
 from Filters.Turn import Turn
 # from PIL import Image
 
@@ -12,7 +13,7 @@ import matplotlib.pyplot as plt
 
 
 def main():
-    img = io.imread("data/img1.jpg")
+    img = io.imread("data/median_ex.jpg")
     # filter = InvertFilter()
     # resultImage = filter.processImage(img)
     # filter = ContrastFilter(2, img)
@@ -23,7 +24,8 @@ def main():
     # resultImage = filter.processImage(img)
     # filter = Transfer(50, 70)
     # resultImage = filter.processImage(img)
-    filter = Turn(50, 50, 50)
+    # filter = Turn(50, 50, 50)
+    filter = MedianFilter()
     resultImage = filter.processImage(img)
     plt.imshow(resultImage)
     plt.show()

@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
-# from PIL import Image
 from skimage import io
 import numpy as np
+from tqdm import tqdm
 
 
 class Filter(metaclass=ABCMeta):
@@ -14,7 +14,7 @@ class Filter(metaclass=ABCMeta):
         resultImage = np.copy(sourceImage)
 
         width, height, _ = resultImage.shape
-        for i in range(width):
+        for i in tqdm(range(width)):
             for j in range(height):
                 resultImage[i][j] = self.calculateNewPixelColor(sourceImage, i, j)
         return resultImage
