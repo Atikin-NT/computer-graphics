@@ -1,49 +1,27 @@
-from Filters.BlurFilter import *
-from Filters.ContoursFilter import *
-from Filters.DotFilter import *
-from Filters.GeometryFilter import *
-from Filters.HypothesesFilter import *
-from Filters.Transfer import Transfer
-from Filters.MedianFilter import MedianFilter
-from Filters.ContoursFilter import SobelFilter
-from Filters.Turn import Turn
-from Filters.MaximumFilter import MaximumFilter
+from index import *
 from skimage import io
 import matplotlib.pyplot as plt
 
 
 def main():
-    img = io.imread("data/img1.jpg")
-    # filter = InvertFilter()
-    # resultImage = filter.processImage(img)
-    # filter = ContrastFilter(2, img)
-    # resultImage = filter.processImage(img)
-    # filter = BlurrFilter()
-    # resultImage = filter.processImage(img)
-    # filter = GaussianFilter(3, 5)
-    # resultImage = filter.processImage(img)
-    # filter = Transfer(50, 70)
-    # resultImage = filter.processImage(img)
-    # filter = Turn(50, 50, 50)
-    # resultImage = filter.processImage(img)
-    filter = MedianFilter()
-    resultImage = filter.processImage(img)
+    img = io.imread("data/Lenna600.png")
 
-    plt.imshow(resultImage)
+    binarised = Binarise([97, 37, 85], 60).processImage(img)
+    plt.imshow(binarised)
     plt.show()
 
-    filter = SobelFilter()
-    resultImage = filter.processImage(resultImage)
-
-    plt.imshow(resultImage)
+    grad = GradFilter().processImage(binarised)
+    plt.imshow(grad)
     plt.show()
 
-    filter = MaximumFilter()
-    resultImage = filter.processImage(resultImage)
-    # filter = SobelFilter()
-    # filter = MaximumFilter()
-    plt.imshow(resultImage)
+    topHat = TopHatFilter().processImage(binarised)
+    plt.imshow(topHat)
     plt.show()
+
+    blackHat = BlackHatFilter().processImage(binarised)
+    plt.imshow(blackHat)
+    plt.show()
+
 
 
 def test():
