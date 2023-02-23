@@ -4,22 +4,10 @@ import matplotlib.pyplot as plt
 
 
 def main():
-    img = io.imread("data/Lenna600.png")
+    img = io.imread("data/img1.jpg")
 
-    binarised = Binarise([97, 37, 85], 60).processImage(img)
-    plt.imshow(binarised)
-    plt.show()
-
-    grad = GradFilter().processImage(binarised)
-    plt.imshow(grad)
-    plt.show()
-
-    topHat = TopHatFilter().processImage(binarised)
-    plt.imshow(topHat)
-    plt.show()
-
-    blackHat = BlackHatFilter().processImage(binarised)
-    plt.imshow(blackHat)
+    res = PerfectReflector(img).processImage(img)
+    plt.imshow(res)
     plt.show()
 
 
