@@ -7,9 +7,7 @@ class MedianFilter(Filter):
         self.radius = radius
 
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int, avg=0):
-        copyImage = np.copy(sourceImage)
-        width, height, _ = copyImage.shape
-
+        width, height, _ = sourceImage.shape
         listOfPixels = []
 
         for i in range(-self.radius, self.radius + 1):

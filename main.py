@@ -6,7 +6,9 @@ from Filters.HypothesesFilter import *
 from Filters.Transfer import Transfer
 from Filters.Turn import Turn
 from Filters.MedianFilter import MedianFilter
+from Filters.LinearStretching import LinearStretching
 
+from Gistogramma import Gistogramm
 
 # import numpy as np
 from skimage import io
@@ -27,8 +29,11 @@ def main():
     # resultImage = filter.processImage(img)
     # filter = Turn(50, 50, 50)
     # resultImage = filter.processImage(img)
-    filter = MedianFilter()
+    # filter = MedianFilter()
+    # resultImage = filter.processImage(img)
+    filter = LinearStretching(Gistogramm(img))
     resultImage = filter.processImage(img)
+    Gistogramm(resultImage)
     plt.imshow(resultImage)
     plt.show()
 
