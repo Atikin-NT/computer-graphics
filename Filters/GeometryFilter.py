@@ -1,5 +1,4 @@
 from Filters.Filters import Filter
-from PIL import Image
 import numpy as np
 from math import sin, pi
 import random
@@ -7,14 +6,17 @@ import random
 
 class WavesFilter(Filter):
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
-        newX = self.Clamp(int(x + 20* sin(2 * pi * y / 60)), 0, sourceImage.width - 1)
+        width, height, _ = sourceImage.shape
+        newX = self.Clamp(int(x + 20 * sin(2 * pi * y / 60)), 0, width - 1)
         newY = y
-        return sourceImage.getpixel((int(newX), newY))    
+        return sourceImage[int(newX)][int(newY)]
+
 
 class GlassFilter(Filter):
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
+        width, height, _ = sourceImage.shape
         newX = x + (random.random() - 0.5) * 10
         newY = y + (random.random() - 0.5) * 10
-        return sourceImage.getpixel((
-            self.Clamp(int(newX), 0, sourceImage.width - 1),
-            self.Clamp(int(newY), 0, sourceImage.height - 1)))   
+        return sourceImage[
+            self.Clamp(int(newX), 0, width - 1)][
+            self.Clamp(int(newY), 0, height - 1)]

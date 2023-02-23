@@ -1,5 +1,4 @@
 from Filters.Filters import Filter
-from PIL import Image
 import numpy as np
 
 
@@ -8,7 +7,7 @@ class Transfer(Filter):
         self.transferX = transferX
         self.transferY = transferY
 
-    def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int, avg=0):
+    def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
         newX = self.transferX + x
         newY = self.transferY + y
 
@@ -16,5 +15,3 @@ class Transfer(Filter):
         if newX >= width or newY >= height:
             return 0, 0, 0
         return sourceImage[newX][newY]
-
-
