@@ -25,6 +25,7 @@ def main():
     # filter = Transfer(50, 70)
     # resultImage = filter.processImage(img)
     # filter = Turn(50, 50, 50)
+    # resultImage = filter.processImage(img)
     filter = MedianFilter()
     resultImage = filter.processImage(img)
 
