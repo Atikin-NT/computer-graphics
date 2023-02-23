@@ -5,12 +5,24 @@ from progress.bar import IncrementalBar
 
 
 class Filter(metaclass=ABCMeta):
-    """Класс филтров"""
+    """Базовый класс филтров"""
     @abstractmethod
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
+        """
+        Подсчет нового цвета для конкретного пикселя
+        :param sourceImage: массив изображения
+        :param x: координата X пикселя
+        :param y: координата Y пикселя
+        :return:
+        """
         pass
 
     def processImage(self, sourceImage: np.ndarray):
+        """
+        Запуск фильтра
+        :param sourceImage: массив изображения
+        :return:
+        """
         resultImage = np.copy(sourceImage)
 
         width, height, _ = resultImage.shape
@@ -58,6 +70,13 @@ class Filter(metaclass=ABCMeta):
         return [maxR, maxG, maxB]
 
     def Clamp(self, value: float, min: int, max: int) -> int:
+        """
+        Проверка на вход значения в границы
+        :param value: само значение
+        :param min: минимум
+        :param max: максимум
+        :return:
+        """
         if value < min:
             return min
         if value > max:

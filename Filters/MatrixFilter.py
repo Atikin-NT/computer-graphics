@@ -3,7 +3,11 @@ import numpy as np
 
 
 class MatrixFilter(Filter):
+    """Класс для помтроения матричных фильтров"""
     def __init__(self, kernel: list[list]):
+        """
+        :param kernel: яндро фильтра - матрица (создается в классе наследнике)
+        """
         self.kernel = kernel
 
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):

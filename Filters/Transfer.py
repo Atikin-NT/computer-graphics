@@ -3,7 +3,14 @@ import numpy as np
 
 
 class Transfer(Filter):
+    """
+    Сдвиг картинки на оси X и Y
+    """
     def __init__(self, transferX: int = 50, transferY: int = 0):
+        """
+        :param transferX: сдвиг по X (default is 50)
+        :param transferY: сдвиг по Y (default is 0)
+        """
         self.transferX = transferX
         self.transferY = transferY
 

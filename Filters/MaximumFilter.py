@@ -3,7 +3,12 @@ import numpy as np
 
 
 class MaximumFilter(Filter):
+    """Фильтр максимума"""
     def __init__(self, radius: int = 1):
+        """
+        По сути тоже самое, что и медианный, только мы берем наибольший элемент
+        :param radius: радиус для маски (default is 1)
+        """
         self.radius = radius
 
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):

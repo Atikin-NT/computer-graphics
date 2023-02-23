@@ -4,7 +4,15 @@ import math
 
 
 class Turn(Filter):
+    """
+    Поворот картинки на указанный угол
+    """
     def __init__(self, x0: int = 0, y0: int = 0, angle_of_rotation: float = 0):
+        """
+        :param x0: координата центра по оси X, вокруг которого будет происходить поворот (default is 0)
+        :param y0: координата центра по оси Y (default is 0)
+        :param angle_of_rotation: угол поворота в градусах (default is 0)
+        """
         self.x0 = x0
         self.y0 = y0
         self.angle_of_rotation = angle_of_rotation

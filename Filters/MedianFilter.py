@@ -3,7 +3,11 @@ import numpy as np
 
 
 class MedianFilter(Filter):
+    """Медианный фильтр"""
     def __init__(self, radius: int = 1):
+        """
+        :param radius: радиус для маски (default is 1)
+        """
         self.radius = radius
 
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
