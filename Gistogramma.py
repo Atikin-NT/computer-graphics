@@ -7,30 +7,36 @@ class Gistogramm:
         # print(img.shape)
         width, height, _ = img.shape
 
-        brightness = np.zeros(255)
+        brightness = np.zeros(255 + 1)
         for i in range(width):
             for j in range(height):
                 pixel = img[i][j]
                 ind = int(pixel[0] * 1/3 + pixel[1] * 1/3 + pixel[2] * 1/3)
-                brightness[ind] = int(brightness[ind] + 1)
+                brightness[ind] += 1
 
         self.listBrightness = brightness
 
-        width, height, _ = self.img.shape
         minBrightness = width * height
-        for i in self.listBrightness:
-            if i < minBrightness and i != 0:
-                minBrightness = i
-        self.minBrightness = minBrightness
+        ind = 0
+        for i in range(255 + 1):
+            if self.listBrightness[i] < minBrightness and self.listBrightness[i] != 0:
+                ind = i
+                minBrightness = self.listBrightness[i]
+        self.minBrightness = ind
 
-        maxBrightness = 0
-        for i in self.listBrightness:
-            if i > maxBrightness:
-                maxBrightness = i
+        ind = 0
+        for i in range(255 + 1):
+            # print(i)
+            if self.listBrightness[i] > self.listBrightness[ind]:
+                ind = i
 
-        self.maxBrightness = maxBrightness
+        self.maxBrightness = ind
+        print(self.listBrightness[self.maxBrightness], self.maxBrightness)
 
         self.show()
+
+        # print(self.minBrightness)
+        # print(self.maxBrightness)
     def show(self):
         plt.plot(self.listBrightness)
         plt.show()

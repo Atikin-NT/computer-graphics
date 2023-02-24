@@ -12,7 +12,12 @@ class LinearStretching(Filter):
         pixel = sourceImage[x][y]
         pixelBrightness = pixel[0] * 1/3 + pixel[1] * 1/3 + pixel[2] * 1/3
 
+        pixelBrightness = self.Clamp(pixelBrightness, 0, 255)
+
+        # print(self.maxBrightness, self.minBrightness)
         newBrightness = (pixelBrightness - self.minBrightness) * (255 / (self.maxBrightness - self.minBrightness))
+        newBrightness = self.Clamp(newBrightness, 0, 255)
+
         k = newBrightness / pixelBrightness
 
         R = pixel[0] * k

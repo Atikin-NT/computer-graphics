@@ -16,7 +16,8 @@ import matplotlib.pyplot as plt
 
 
 def main():
-    img = io.imread("data/img1.jpg")
+    # img = io.imread("data/img1.jpg")
+    img = io.imread("data/iceberg.jpg")
     # filter = InvertFilter()
     # resultImage = filter.processImage(img)
     # filter = ContrastFilter(2, img)
