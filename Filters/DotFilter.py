@@ -42,8 +42,15 @@ class LightCorrection(Filter):
         super().__init__()
 
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
-        sourceClolor = sourceImage[x][y]
-        resultColor = (self.Clamp(sourceClolor[0] + self.c, 0, 255),
-                       self.Clamp(sourceClolor[1] + self.c, 0, 255),
-                       self.Clamp(sourceClolor[2] + self.c, 0, 255))
+        sourceColor = sourceImage[x][y]
+        resultColor = (self.Clamp(sourceColor[0] + self.c, 0, 255),
+                       self.Clamp(sourceColor[1] + self.c, 0, 255),
+                       self.Clamp(sourceColor[2] + self.c, 0, 255))
         return resultColor
+
+class BlackAndWhite(Filter):
+    def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
+        pixelColor = sourceImage[x][y]
+        resultColor = pixelColor[0] * 1/3 + pixelColor[1] * 1/3 + pixelColor[2] * 1/3
+
+        return self.Clamp(resultColor, 0, 255)

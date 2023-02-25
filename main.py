@@ -32,12 +32,19 @@ def main():
     # resultImage = filter.processImage(img)
     # filter = MedianFilter()
     # resultImage = filter.processImage(img)
-    filter = LinearStretching(Gistogramm(img))
-    resultImage = filter.processImage(img)
-    Gistogramm(resultImage)
-    plt.imshow(resultImage)
+    # filter = LinearStretching(Gistogramm(img))
+    # resultImage = filter.processImage(img)
+    filter = BlackAndWhite()
+    WBimage = filter.processImage(img)
+
+    plt.imshow(WBimage)
     plt.show()
 
+    filter = LinearStretching(WBimage)
+    resultImage = filter.processImage(WBimage)
+
+    plt.imshow(resultImage)
+    plt.show()
 
 def test():
     img = io.imread("data/Lenna600.png")
