@@ -22,7 +22,6 @@ class GrayWorld(Filter):
     def __init__(self, sourceImage: np.ndarray):
         self.r_avg, self.g_avg, self.b_avg = self.avg(sourceImage)
         self.l_avg = (self.r_avg + self.g_avg + self.b_avg) / 3
-        super().__init__()
 
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
         l_avg = self.l_avg
@@ -37,7 +36,6 @@ class RefColorCor(Filter):
     def __init__(self, sourceImage: np.ndarray, src: list, dstrgb: list):
         self.src_rgb = sourceImage[src[0]][src[1]]
         self.dst_rgb = dstrgb
-        super().__init__()
 
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
         sourceClolor = sourceImage[x][y]
@@ -51,7 +49,6 @@ class PerfectReflector(Filter):
     def __init__(self, sourceImage: np.ndarray):
         # [255, 255, 255], если есть белый (и смысл тогда?)
         self.maxes = self.maximums(sourceImage)
-        super().__init__()
 
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
         sourceClolor = sourceImage[x][y]

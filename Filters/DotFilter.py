@@ -25,7 +25,6 @@ class GrayScaleFilter(Filter):
 class Sepia(Filter):
     def __init__(self, k=15):
         self.k = k
-        super().__init__()
 
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
         sourceClolor = sourceImage[x][y]
@@ -40,7 +39,6 @@ class Sepia(Filter):
 class LightCorrection(Filter):
     def __init__(self, c=25):
         self.c = c
-        super().__init__()
 
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
         sourceColor = sourceImage[x][y]
@@ -54,7 +52,6 @@ class Binarise(Filter):
     def __init__(self, clr=[127, 127, 127], threshold = 127):
         self.clr = clr
         self.threshold = threshold
-        super().__init__()
 
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
         sourceClolor = sourceImage[x][y]
