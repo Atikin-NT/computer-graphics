@@ -11,7 +11,6 @@ class MedianFilter(Filter):
         self.radius = radius
 
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
-
         width, height, _ = sourceImage.shape
 
         color_arr = []

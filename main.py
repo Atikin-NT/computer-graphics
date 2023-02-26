@@ -8,12 +8,17 @@ from Filters.MedianFilter import MedianFilter
 from Filters.ContoursFilter import SobelFilter
 from Filters.Turn import Turn
 from Filters.MaximumFilter import MaximumFilter
+from Filters.LinearStretching import LinearStretching
+
+from Gistogramma import Gistogramm
+
 from skimage import io
 import matplotlib.pyplot as plt
 
 
 def main():
-    img = io.imread("data/img1.jpg")
+    # img = io.imread("data/img1.jpg")
+    img = io.imread("data/iceberg.jpg")
     # filter = InvertFilter()
     # resultImage = filter.processImage(img)
     # filter = ContrastFilter(2, img)
@@ -42,9 +47,23 @@ def main():
     resultImage = filter.processImage(resultImage)
     # filter = SobelFilter()
     # filter = MaximumFilter()
+    # filter = MedianFilter()
+    # resultImage = filter.processImage(img)
+    # filter = LinearStretching(Gistogramm(img))
+    # resultImage = filter.processImage(img)
+    # ------------------------------------------------
+    # filter = BlackAndWhite()
+    # WBimage = filter.processImage(img)
+
+    # plt.imshow(WBimage)
+    # plt.show()
+
+    # filter = LinearStretching(WBimage)
+    # resultImage = filter.processImage(WBimage)
+    # ------------------------------------------------
+
     plt.imshow(resultImage)
     plt.show()
-
 
 def test():
     img = io.imread("data/Lenna600.png")
