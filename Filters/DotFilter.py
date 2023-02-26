@@ -1,5 +1,6 @@
 from .Filters import Filter
 import numpy as np
+from math import sqrt
 
 
 class InvertFilter(Filter):
@@ -48,6 +49,26 @@ class LightCorrection(Filter):
                        self.Clamp(sourceColor[2] + self.c, 0, 255))
         return resultColor
 
+
+class Binarise(Filter):
+    def __init__(self, clr=[127, 127, 127], threshold = 127):
+        self.clr = clr
+        self.threshold = threshold
+        super().__init__()
+
+    def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
+        sourceClolor = sourceImage[x][y]
+        clr = self.clr
+        threshold = self.threshold
+        dist = sqrt((sourceClolor[0] - clr[0])**2 + 
+                    (sourceClolor[1] - clr[1])**2 + 
+                    (sourceClolor[2] - clr[2])**2)
+        if dist < threshold:
+            resultColor = [255, 255, 255]
+        else:
+            resultColor = [0, 0, 0]
+        return resultColor
+    
 class BlackAndWhite(Filter):
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
         pixelColor = sourceImage[x][y]

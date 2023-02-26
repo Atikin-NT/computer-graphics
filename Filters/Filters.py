@@ -52,22 +52,19 @@ class Filter(metaclass=ABCMeta):
         return [resultR / n, resultG / n, resultB / n]
 
     def maximums(self, sourceImage: np.ndarray):
-        maxR = 0
-        maxG = 0
-        maxB = 0
-
+        maxClr = [0, 0, 0]
+        maxL = 0
+        
         width, height, _ = sourceImage.shape
 
         for i in range(width):
             for j in range(height):
-                clr = sourceImage[i][j]
-                if (clr[0] > maxR):
-                    maxR = clr[0]
-                if (clr[1] > maxG):
-                    maxG = clr[1]
-                if (clr[2] > maxB):
-                    maxB = clr[2]
-        return [maxR, maxG, maxB]
+                clr = sourceImage[i][j].astype('uint16')
+                ll = clr[0] + clr[1] + clr[2]
+                if ll > maxL:
+                    maxL = ll
+                    maxClr = clr
+        return maxClr
 
     def Clamp(self, value: float, min: int, max: int) -> int:
         """

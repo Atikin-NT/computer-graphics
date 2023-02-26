@@ -1,69 +1,15 @@
-from Filters.BlurFilter import *
-from Filters.ContoursFilter import *
-from Filters.DotFilter import *
-from Filters.GeometryFilter import *
-from Filters.HypothesesFilter import *
-from Filters.Transfer import Transfer
-from Filters.MedianFilter import MedianFilter
-from Filters.ContoursFilter import SobelFilter
-from Filters.Turn import Turn
-from Filters.MaximumFilter import MaximumFilter
-from Filters.LinearStretching import LinearStretching
-
-from Gistogramma import Gistogramm
-
+from index import *
 from skimage import io
 import matplotlib.pyplot as plt
 
 
 def main():
-    # img = io.imread("data/img1.jpg")
-    img = io.imread("data/iceberg.jpg")
-    # filter = InvertFilter()
-    # resultImage = filter.processImage(img)
-    # filter = ContrastFilter(2, img)
-    # resultImage = filter.processImage(img)
-    # filter = BlurrFilter()
-    # resultImage = filter.processImage(img)
-    # filter = GaussianFilter(3, 5)
-    # resultImage = filter.processImage(img)
-    # filter = Transfer(50, 70)
-    # resultImage = filter.processImage(img)
-    # filter = Turn(50, 50, 50)
-    # resultImage = filter.processImage(img)
-    filter = MedianFilter()
-    resultImage = filter.processImage(img)
+    img = io.imread("data/img1.jpg")
 
-    plt.imshow(resultImage)
+    res = PerfectReflector(img).processImage(img)
+    plt.imshow(res)
     plt.show()
 
-    filter = SobelFilter()
-    resultImage = filter.processImage(resultImage)
-
-    plt.imshow(resultImage)
-    plt.show()
-
-    filter = MaximumFilter()
-    resultImage = filter.processImage(resultImage)
-    # filter = SobelFilter()
-    # filter = MaximumFilter()
-    # filter = MedianFilter()
-    # resultImage = filter.processImage(img)
-    # filter = LinearStretching(Gistogramm(img))
-    # resultImage = filter.processImage(img)
-    # ------------------------------------------------
-    # filter = BlackAndWhite()
-    # WBimage = filter.processImage(img)
-
-    # plt.imshow(WBimage)
-    # plt.show()
-
-    # filter = LinearStretching(WBimage)
-    # resultImage = filter.processImage(WBimage)
-    # ------------------------------------------------
-
-    plt.imshow(resultImage)
-    plt.show()
 
 def test():
     img = io.imread("data/Lenna600.png")
