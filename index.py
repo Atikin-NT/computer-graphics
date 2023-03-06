@@ -8,3 +8,4 @@ from Filters.MedianFilter import MedianFilter
 from Filters.Turn import Turn
 from Filters.MaximumFilter import MaximumFilter
 from Filters.MatMorph import *
+from Filters.LinearStretching import *
