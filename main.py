@@ -4,9 +4,13 @@ import matplotlib.pyplot as plt
 
 
 def main():
-    img = io.imread("data/img1.jpg")
+    img = io.imread("data/median_ex.jpg")
 
-    res = PerfectReflector(img).processImage(img)
+    # res = PerfectReflector(img).processImage(img)
+    res = GrayWorld(img).processImage(img)
+    res = BalBlaBla().processImage(res)
+    # res = LightCorrection().processImage(res)
+    # res = BalBlaBla().processImage(res)
     plt.imshow(res)
     plt.show()
 

@@ -29,6 +29,6 @@ class MatrixFilter(Filter):
                 resultG += neighborColor[1] * self.kernel[k + radiusX][l + radiusY]
                 resultB += neighborColor[2] * self.kernel[k + radiusX][l + radiusY]
 
-        return (self.Clamp(resultR, 0, 255),
-                self.Clamp(resultG, 0, 255),
-                self.Clamp(resultB, 0, 255))
+        return (self.Clamp((resultR+255) / 2, 0, 255),
+                self.Clamp((resultG+255) / 2, 0, 255),
+                self.Clamp((resultB+255) / 2, 0, 255))

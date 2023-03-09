@@ -66,3 +66,12 @@ class EdgeDetection(MatrixFilter):
             [0, -1, 0]
         ]
         super().__init__(kernel)
+
+class BalBlaBla(MatrixFilter):
+    def __init__(self):
+        kernel = [
+            [0, 1, 0],
+            [1, 0, -1],
+            [0, -1, 0]
+        ]
+        super().__init__(kernel)
