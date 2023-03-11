@@ -4,13 +4,18 @@ import matplotlib.pyplot as plt
 
 
 def main():
-    img = io.imread("data/median_ex.jpg")
+    img = io.imread("data/img1.jpg")
 
-    # res = PerfectReflector(img).processImage(img)
-    res = GrayWorld(img).processImage(img)
-    res = BalBlaBla().processImage(res)
-    # res = LightCorrection().processImage(res)
-    # res = BalBlaBla().processImage(res)
+    # Тиснение ----------------------
+    #res = GrayWorld(img).processImage(img)
+    #res = EmbossingKernel().processImage(res)
+
+    # Светящиеся края --------------------
+    res = MedianFilterMax().processImage(img)
+    res = SobelFilter().processImage(res)
+    res = MaximumFilter().processImage(res)
+    # res = SobelFilter().processImage(res)
+
     plt.imshow(res)
     plt.show()
 

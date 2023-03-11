@@ -2,8 +2,6 @@ from .Filters import Filter
 import numpy as np
 from math import sqrt
 
-# модель rgb
-# методы серый мир, идеальный отражатель
 
 class InvertFilter(Filter):
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):

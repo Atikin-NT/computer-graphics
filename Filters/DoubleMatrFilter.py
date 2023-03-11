@@ -17,8 +17,6 @@ class DoubleMatrFilter(Filter):
         resultB = 0
         width, height, _ = sourceImage.shape
 
-        width, height, _ = sourceImage.shape
-
         for l in range(-radiusY, radiusY + 1):
             for k in range(-radiusX, radiusX + 1):
                 idX = self.Clamp(x + k, 0, width - 1)

@@ -1,4 +1,4 @@
-from .MatrixFilter import MatrixFilter
+from .MatrixFilter import MatrixFilter, EmbossingMatrix
 import numpy as np
 
 
@@ -67,7 +67,8 @@ class EdgeDetection(MatrixFilter):
         ]
         super().__init__(kernel)
 
-class BalBlaBla(MatrixFilter):
+
+class EmbossingKernel(EmbossingMatrix):
     def __init__(self):
         kernel = [
             [0, 1, 0],
