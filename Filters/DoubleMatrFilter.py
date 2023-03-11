@@ -30,12 +30,12 @@ class DoubleMatrFilter(Filter):
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
         Rx, Gx, Bx = self.calculateNewPixelColorK(sourceImage, x, y, self.kernelx)
         Ry, Gy, By = self.calculateNewPixelColorK(sourceImage, x, y, self.kernely)
-        intensity1 = sqrt((Rx + Gx + Bx) * (Rx + Gx + Bx) +
-                          (Ry + Gy + By) * (Ry + Gy + By)) / 3
-        # R = sqrt(Rx * Rx + Ry * Ry)
-        # G = sqrt(Gx * Gx + Gy * Gy)
-        # B = sqrt(Bx * Bx + By * By)
+        # intensity1 = sqrt((Rx + Gx + Bx) * (Rx + Gx + Bx) +
+        #                   (Ry + Gy + By) * (Ry + Gy + By)) / 3
+        R = sqrt(Rx * Rx + Ry * Ry)
+        G = sqrt(Gx * Gx + Gy * Gy)
+        B = sqrt(Bx * Bx + By * By)
         # intensity2 = (R + G + B) / 3
-        return (self.Clamp(intensity1, 0, 255),
-                self.Clamp(intensity1, 0, 255),
-                self.Clamp(intensity1, 0, 255))
+        return (self.Clamp(R, 0, 255),
+                self.Clamp(G, 0, 255),
+                self.Clamp(B, 0, 255))

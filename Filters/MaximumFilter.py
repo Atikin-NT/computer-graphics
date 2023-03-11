@@ -24,9 +24,9 @@ class MaximumFilter(Filter):
                 color_arr.append(neighborColor)
                 # print(0.3*neighborColor[0] + 0.59*neighborColor[1] + 0.11*neighborColor[2])
 
-        color_arr.sort(key=lambda brightness: 0.3*brightness[0] + 0.59*brightness[1] + 0.11*brightness[2])
-        resultR = color_arr[-1][0]
-        resultG = color_arr[-1][1]
-        resultB = color_arr[-1][2]
+        # color_arr.sort(key=lambda brightness: 0.3*brightness[0] + 0.59*brightness[1] + 0.11*brightness[2])
+        maxR = sorted(color_arr, key=lambda r: r[0], reverse=True)[0][0]
+        maxG = sorted(color_arr, key=lambda r: r[1], reverse=True)[0][1]
+        maxB = sorted(color_arr, key=lambda r: r[2], reverse=True)[0][2]
 
-        return resultR, resultG, resultB
+        return maxR, maxG, maxB

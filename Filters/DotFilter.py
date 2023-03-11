@@ -72,3 +72,11 @@ class BlackAndWhite(Filter):
         resultColor = pixelColor[0] * 1/3 + pixelColor[1] * 1/3 + pixelColor[2] * 1/3
 
         return self.Clamp(resultColor, 0, 255)
+    
+class UseMask(Filter):
+    def __init__(self, mask: np.ndarray):
+        self.mask = mask
+
+    def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
+        clr = self.mask[x][y].astype('float32')/255
+        return sourceImage[x][y] * clr

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 def main():
-    img = io.imread("data/img1.jpg")
+    img = io.imread("data/msu.jpg")
 
     # Тиснение ----------------------
     #res = GrayWorld(img).processImage(img)
@@ -14,6 +14,7 @@ def main():
     res = MedianFilterMax().processImage(img)
     res = SobelFilter().processImage(res)
     res = MaximumFilter().processImage(res)
+    res = UseMask(res).processImage(img)
     # res = SobelFilter().processImage(res)
 
     plt.imshow(res)
