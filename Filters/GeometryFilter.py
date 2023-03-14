@@ -7,7 +7,7 @@ import random
 class WavesFilter(Filter):
     def calculateNewPixelColor(self, sourceImage: np.ndarray, x: int, y: int):
         width, height, _ = sourceImage.shape
-        newX = self.Clamp(int(x + 20 * sin(2 * pi * y / 60)), 0, width - 1)
+        newX = self.Clamp(int(x + 20 * sin(2 * pi * x / 30)), 0, width - 1)
         newY = y
         return sourceImage[int(newX)][int(newY)]
 

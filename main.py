@@ -2,6 +2,8 @@ from index import *
 from skimage import io
 import matplotlib.pyplot as plt
 
+# AVS палитра
+# линейные фильтры
 
 def main():
     img = io.imread("data/msu.jpg")
@@ -19,6 +21,7 @@ def main():
 
     plt.imshow(res)
     plt.show()
+
 
 
 def test():
