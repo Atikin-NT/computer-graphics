@@ -2,13 +2,22 @@ from index import *
 from skimage import io
 import matplotlib.pyplot as plt
 
+# AVS палитра
+# линейные фильтры
 
 def main():
-    img = io.imread("data/img1.jpg")
+    img = io.imread("data/img2.png")
 
-    res = PerfectReflector(img).processImage(img)
+    plt.imshow(img)
+    plt.show()
+    # res = PerfectReflector(img).processImage(img)
+    # plt.imshow(res)
+    # plt.show()
+
+    res = MiddlePoint(2).processImage(img)
     plt.imshow(res)
     plt.show()
+
 
 
 def test():
